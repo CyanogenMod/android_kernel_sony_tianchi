@@ -2,11 +2,7 @@
  *  linux/mm/swapfile.c
  *
  *  Copyright (C) 1991, 1992, 1993, 1994  Linus Torvalds
- *  Copyright (C) 2014 Sony Mobile Communications AB.
  *  Swap reorganised 29.12.95, Stephen Tweedie
- *
- *  NOTE: This file has been modified by Sony Mobile Communications AB.
- *  Modifications are licensed under the License.
  */
 
 #include <linux/mm.h>
@@ -794,7 +790,7 @@ int mem_cgroup_count_swap_user(swp_entry_t ent, struct page **pagep)
 	p = swap_info_get(ent);
 	if (p) {
 		count += swap_count(p->swap_map[swp_offset(ent)]);
-		spin_unlock(&p->lock);
+		spin_unlock(&swap_lock);
 	}
 
 	*pagep = page;
@@ -1610,6 +1606,7 @@ SYSCALL_DEFINE1(swapoff, const char __user *, specialfile)
 	struct address_space *mapping;
 	struct inode *inode;
 	char *pathname;
+	int oom_score_adj;
 	int i, type, prev;
 	int err;
 
@@ -1672,9 +1669,9 @@ SYSCALL_DEFINE1(swapoff, const char __user *, specialfile)
 	spin_unlock(&p->lock);
 	spin_unlock(&swap_lock);
 
-	set_current_oom_origin();
+	oom_score_adj = test_set_oom_score_adj(OOM_SCORE_ADJ_MAX);
 	err = try_to_unuse(type);
-	clear_current_oom_origin();
+	compare_swap_oom_score_adj(OOM_SCORE_ADJ_MAX, oom_score_adj);
 
 	if (err) {
 		/*
