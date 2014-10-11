@@ -2686,6 +2686,7 @@ static irqreturn_t smsm_irq_handler(int irq, void *data)
 #ifdef CONFIG_SIM_DETECT_FEATURE
 	int uim_detect_flag = -1;
 #endif
+
 	if (irq == INT_ADSP_A11_SMSM) {
 		uint32_t mux_val;
 		static uint32_t prev_smem_q6_apps_smsm;

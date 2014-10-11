@@ -530,7 +530,6 @@ config ARCH_MSM8226
 	select MSM_RPM_STATS_LOG
 	select ARCH_WANT_KMAP_ATOMIC_FLUSH
 	select ENABLE_VMALLOC_SAVINGS
-	select HAVE_NMI_WATCHDOG if MSM_WATCHDOG_V2
 
 config ARCH_MSMSAMARIUM
 	bool "MSMSAMARIUM"
@@ -2921,15 +2920,6 @@ config MSM_CACHE_DUMP_ON_PANIC
 	  look at them in a RAM dump will give useless data. Select this if you
 	  want to dump the L1 and L2 caches on panic before any flush occurs.
 	  If unsure, say N
-
-config SONY_SSM
-	bool "Support Super Stamina Mode"
-	default n
-	help
-	  This enables support for power mode notifications, required by Super
-	  Stamina Mode. The driver will let a user space application register
-	  for notifications when the device is ready to switch into a new
-	  power mode.
 
 config MSM_HSIC_SYSMON
 	tristate "MSM HSIC system monitor driver"

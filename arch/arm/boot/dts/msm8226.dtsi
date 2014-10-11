@@ -224,7 +224,6 @@
 		qcom,msm-bus,vectors-KBps =
 				<86 512 0 0>,
 				<86 512 500 800>;
-
 	};
 
 	qcom,msm-imem@fe805000 {
@@ -1377,14 +1376,6 @@
 		compatible = "arm,cortex-a7-pmu";
 		qcom,irq-is-percpu;
 		interrupts = <1 7 0xf00>;
-	};
-
-	sony,ric_info {
-		compatible = "sony_ric";
-		sony,num-partition = <4>;
-		sony,partition-names = "system", "userdata", "cache", "apps_log";
-		sony,mount_paths = "/system", "/data", "/cache", "/mnt/idd";
-		sony,mount-flags = <0x1 0x6 0x6 0xE>;
 	};
 };
 

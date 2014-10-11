@@ -1,5 +1,4 @@
 /* Copyright (c) 2011-2013, The Linux Foundation. All rights reserved.
- * Copyright (C) 2014 Sony Mobile Communications AB.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -9,9 +8,6 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
- * NOTE: This file has been modified by Sony Mobile Communications AB.
- * Modifications are licensed under the License.
  */
 
 #include <linux/kernel.h>
@@ -281,7 +277,7 @@ static void pronto_stop(const struct subsys_desc *desc)
 	pil_shutdown(&drv->desc);
 }
 
-static void log_wcnss_sfr(struct pronto_data *drv)
+static void log_wcnss_sfr(void)
 {
 	char *smem_reset_reason;
 	unsigned smem_reset_size;
@@ -298,8 +294,6 @@ static void log_wcnss_sfr(struct pronto_data *drv)
 	} else {
 		pr_err("wcnss subsystem failure reason: %.81s\n",
 				smem_reset_reason);
-		update_crash_reason(drv->subsys, smem_reset_reason,
-							smem_reset_size);
 		memset(smem_reset_reason, 0, smem_reset_size);
 		wmb();
 	}
@@ -307,7 +301,7 @@ static void log_wcnss_sfr(struct pronto_data *drv)
 
 static void restart_wcnss(struct pronto_data *drv)
 {
-	log_wcnss_sfr(drv);
+	log_wcnss_sfr();
 	subsystem_restart_dev(drv->subsys);
 }
 

@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
- * Copyright (C) 2014 Sony Mobile Communications AB.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -10,9 +9,6 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
- * NOTE: This file has been modified by Sony Mobile Communications AB.
- * Modifications are licensed under the License.
  */
 
 #include <linux/init.h>
@@ -238,7 +234,7 @@ static struct notifier_block mnb = {
 	.notifier_call = modem_notifier_cb,
 };
 
-static void adsp_log_failure_reason(struct lpass_data *drv)
+static void adsp_log_failure_reason(void)
 {
 	char *reason;
 	char buffer[81];
@@ -258,7 +254,6 @@ static void adsp_log_failure_reason(struct lpass_data *drv)
 
 	size = min(size, sizeof(buffer) - 1);
 	memcpy(buffer, reason, size);
-	update_crash_reason(drv->subsys, reason, size);
 	buffer[size] = '\0';
 	pr_err("ADSP subsystem failure reason: %s", buffer);
 	memset((void *)reason, 0x0, size);
@@ -267,7 +262,7 @@ static void adsp_log_failure_reason(struct lpass_data *drv)
 
 static void restart_adsp(struct lpass_data *drv)
 {
-	adsp_log_failure_reason(drv);
+	adsp_log_failure_reason();
 	subsystem_restart_dev(drv->subsys);
 }
 
