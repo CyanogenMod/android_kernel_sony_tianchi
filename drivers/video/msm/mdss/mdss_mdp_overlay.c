@@ -39,7 +39,6 @@
 #include "mdss_mdp_rotator.h"
 
 #include "splash.h"
-#define DEBUG
 
 #define VSYNC_PERIOD 16
 #define BORDERFILL_NDX	0x0BF000BF

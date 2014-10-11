@@ -53,7 +53,6 @@ struct msm_actuator_func_tbl {
 	int32_t (*actuator_set_focus_pd) (struct msm_actuator_ctrl_t *);
 	int32_t (*actuator_set_init_settings) (struct msm_actuator_ctrl_t *,
 		uint16_t, enum msm_actuator_data_type, struct reg_settings_t *);
-
 #endif
 };
 

@@ -118,6 +118,7 @@ config IMX135
 		4 mipi lanes, preview config = 2104 x 1560 at 49 fps,
 		snapshot config = 4208 x 3120 at 24 fps,
 		Video HDR support.
+
 config IMX134
 	bool "Sensor IMX134 (BAYER 8M)"
 	depends on MSMB_CAMERA

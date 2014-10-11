@@ -1,5 +1,4 @@
 /* Copyright (c) 2009-2014, The Linux Foundation. All rights reserved.
- * Copyright (C) 2014 Sony Mobile Communications AB.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -10,8 +9,6 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * NOTE: This file has been modified by Sony Mobile Communications AB.
- * Modifications are licensed under the License.
  */
 /*
  * QUP driver for Qualcomm MSM platforms
@@ -1220,12 +1217,11 @@ timeout_err:
 					dev_err(dev->dev,
 					"I2C slave addr:0x%x not connected\n",
 					dev->msg->addr);
-					ret = -ENOTCONN;
-					goto out_err;
+					dev->err = ENOTCONN;
 				} else if (dev->err < 0) {
 					dev_err(dev->dev,
 					"QUP data xfer error %d\n", dev->err);
-					ret = -EIO;
+					ret = dev->err;
 					goto out_err;
 				} else if (dev->err > 0) {
 					/*
@@ -1236,7 +1232,7 @@ timeout_err:
 					 */
 					qup_i2c_recover_bus_busy(dev);
 				}
-				ret = -EIO;
+				ret = -dev->err;
 				goto out_err;
 			}
 			if (dev->msg->flags & I2C_M_RD) {

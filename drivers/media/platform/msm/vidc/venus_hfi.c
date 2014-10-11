@@ -1,5 +1,4 @@
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
- * Copyright (C) 2014 Sony Mobile Communications AB.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -10,8 +9,6 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * NOTE: This file has been modified by Sony Mobile Communications AB.
- * Modifications are licensed under the License.
  */
 
 #include <linux/slab.h>
@@ -2581,15 +2578,6 @@ static int venus_hfi_try_clk_gating(struct venus_hfi_device *device)
 	mutex_unlock(&device->write_lock);
 	return rc;
 }
-
-static void venus_hfi_crash_reason(struct hfi_sfr_struct *vsfr)
-{
-	char msg[81];
-	snprintf(msg, sizeof(msg), "SFR Message from FW : %s",
-						vsfr->rg_data);
-	subsystem_crash_reason("venus", msg);
-}
-
 static void venus_hfi_process_msg_event_notify(
 	struct venus_hfi_device *device, void *packet)
 {
@@ -2604,11 +2592,9 @@ static void venus_hfi_process_msg_event_notify(
 		HFI_EVENT_SYS_ERROR) {
 		vsfr = (struct hfi_sfr_struct *)
 				device->sfr.align_virtual_addr;
-		if (vsfr) {
+		if (vsfr)
 			dprintk(VIDC_ERR, "SFR Message from FW : %s",
 				vsfr->rg_data);
-			venus_hfi_crash_reason(vsfr);
-		}
 	}
 }
 static void venus_hfi_response_handler(struct venus_hfi_device *device)
@@ -2624,12 +2610,10 @@ static void venus_hfi_response_handler(struct venus_hfi_device *device)
 				__func__);
 			vsfr = (struct hfi_sfr_struct *)
 					device->sfr.align_virtual_addr;
-			if (vsfr) {
+			if (vsfr)
 				dprintk(VIDC_ERR,
 					"SFR Message from FW : %s",
 						vsfr->rg_data);
-				venus_hfi_crash_reason(vsfr);
-			}
 			venus_hfi_process_sys_watchdog_timeout(device);
 		}
 
