@@ -286,6 +286,7 @@ struct msm_mctl_post_proc_cmd {
 #define MAX_ACTUATOR_TYPE_SIZE 32
 #define MAX_ACTUATOR_REG_TBL_SIZE 8
 
+
 #define MSM_MAX_CAMERA_CONFIGS 2
 
 #define PP_SNAP  0x01

@@ -627,6 +627,5 @@ static inline int msm_register_usb_ext_notification(
 {
 	return -ENODEV;
 }
-
 #endif
 #endif
