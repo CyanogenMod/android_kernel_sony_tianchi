@@ -290,6 +290,8 @@ obj-$(CONFIG_ARCH_MPQ8092) += board-8092.o board-8092-gpiomux.o
 obj-$(CONFIG_ARCH_MPQ8092) += clock-8092.o
 ifdef CONFIG_MACH_SONY_TIANCHI
 obj-$(CONFIG_MACH_SONY_TIANCHI) += board-8226.o board-sony_tianchi-gpiomux.o bms-batterydata-mari.o bms-batterydata-marie.o sim_detect_somc.o
+else ifdef CONFIG_MACH_SONY_TIANCHI_DSDS
+obj-$(CONFIG_MACH_SONY_TIANCHI_DSDS) += board-8226.o board-sony_tianchi_dsds-gpiomux.o bms-batterydata-mari.o bms-batterydata-marie.o sim_detect_somc.o
 else
 obj-$(CONFIG_ARCH_MSM8226) += board-8226.o board-8226-gpiomux.o
 endif

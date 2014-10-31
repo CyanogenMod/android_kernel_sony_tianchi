@@ -1,2 +1,3 @@
 Configuration files can be found in arch/arm/configs.
-    Xperia D5303 => yukon_tianchi_defconfig
+    Xperia T2 D5303 => yukon_tianchi_defconfig
+    Xperia T2 D5322 => yukon_tianchi_dsds_defconfig
