@@ -383,17 +383,17 @@ static int pn547_parse_dt(struct device *dev,
 	struct pn547_i2c_platform_data *pdata)
 {
 	struct device_node *np = dev->of_node;
-	pdata->irq_gpio = of_get_named_gpio_flags(np, "pn547,irq-gpio",
+	pdata->irq_gpio = of_get_named_gpio_flags(np, "nxp,irq_gpio",
 		0, &pdata->irq_gpio_flags);
 
-	pdata->ven_gpio = of_get_named_gpio_flags(np, "pn547,ven-gpio",
+	pdata->ven_gpio = of_get_named_gpio_flags(np, "nxp,ven",
 		0, &pdata->ven_gpio_flags);
 
-	pdata->firm_gpio = of_get_named_gpio_flags(np, "pn547,firm-gpio",
+	pdata->firm_gpio = of_get_named_gpio_flags(np, "nxp,dwld_en",
 		0, &pdata->firm_gpio_flags);
 
 	if (pdata->firm_gpio < 0)
-		of_property_read_u32(np, "pn547,firm-expander-gpio",
+		of_property_read_u32(np, "nxp,firm-expander-gpio",
 			&pdata->firm_gpio);
 
 	pr_info("%s: irq : %d, ven : %d, firm : %d\n",
@@ -652,7 +652,7 @@ static const struct i2c_device_id pn547_id[] = {
 
 #ifdef CONFIG_OF
 static struct of_device_id nfc_match_table[] = {
-	{ .compatible = "pn547",},
+	{ .compatible = "nxp,pn547", },
 	{},
 };
 #else
