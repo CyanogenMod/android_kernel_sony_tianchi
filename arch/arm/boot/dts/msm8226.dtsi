@@ -977,15 +977,15 @@
 		qcom,sda-gpio = <&msmgpio 10 0>;
 		qcom,scl-gpio = <&msmgpio 11 0>;
 		qcom,master-id = <86>;
-		pn547@28{
-			compatible = "pn547";
+		nfc@28{
+			compatible = "nxp,pn547";
 			reg = <0x28>;
 			interrupt-parent = <&msmgpio>;
 			interrupts = <21 0x0>;
-			pn547,nfc_clk_req = <&pm8226_gpios 3 0x00>;
-			pn547,irq-gpio = <&msmgpio 21 0x00>;
-			pn547,firm-gpio = <&msmgpio 20 0x00>;
-			pn547,ven-gpio = <&pm8226_gpios 2 0x01>;
+			nxp,irq_gpio = <&msmgpio 21 0x00>;
+			nxp,dwld_en = <&msmgpio 20 0x00>;
+			nxp,ven = <&pm8226_gpios 2 0x01>;
+			nxp,clk_req = <&pm8226_gpios 3 0x00>;
 		};
 	};
 	i2c@f9926000 { /* BLSP-1 QUP-4 */
