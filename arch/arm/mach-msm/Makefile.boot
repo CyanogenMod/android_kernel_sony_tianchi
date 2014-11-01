@@ -123,6 +123,8 @@ endif
 #        dtb-$(CONFIG_ARCH_MSM8226)	+= apq8026-v2-cdp.dtb
 #        dtb-$(CONFIG_ARCH_MSM8226)	+= apq8026-v2-mtp.dtb
         dtb-$(CONFIG_MACH_SONY_TIANCHI) += msm8926-yukon_tianchi.dtb
+        dtb-$(CONFIG_MACH_SONY_TIANCHI_DSDS) += msm8226-v1-yukon_tianchi_dsds.dtb
+        dtb-$(CONFIG_MACH_SONY_TIANCHI_DSDS) += msm8226-v2-yukon_tianchi_dsds.dtb
 
 # FSM9XXX
    zreladdr-$(CONFIG_ARCH_FSM9XXX)	:= 0x10008000
